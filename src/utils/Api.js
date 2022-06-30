@@ -43,8 +43,8 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: data.firstname,
-                about: data.info,
+                name: data.name,
+                about: data.about,
             })
         })
             .then((res) => this._handleResponse(res))
@@ -103,8 +103,18 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                avatar: data.link,
+                avatar: data.avatar,
             })
+        })
+            .then((res) => this._handleResponse(res))
+    }
+
+    changeLikeCardStatus(data, isLiked) {
+        return fetch(`${this._baseUrl}cards/${data}/likes`, {
+            method: !isLiked ? 'DELETE' : 'PUT',
+            headers: {
+                authorization: this._token,
+            }
         })
             .then((res) => this._handleResponse(res))
     }

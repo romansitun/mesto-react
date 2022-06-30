@@ -48,3 +48,6 @@
 
 @import url(../src/blocks/popup/__form-button/_action_confirm/popup__form-button_action_confirm.css);
 @import url(../src/blocks/popup/__title/_place_confirm/popup__title_place_confirm.css);
+
+
+@import url(../src/blocks/element/__trash-button/_hidden/element__trash-button_hidden.css);
