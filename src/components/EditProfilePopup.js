@@ -2,6 +2,7 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
+
 function EditProfilePopup({ isOpen, onClose, onUpdateUser, onLoading }) {
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
@@ -36,6 +37,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, onLoading }) {
         <PopupWithForm name='edit' title='Редактировать профиль' isOpen={isOpen} onSubmit={handleSubmit} onClose={onClose} children={
             <>
                 <input
+
                     id="firstname-input"
                     placeholder="Имя"
                     type="text"
@@ -43,19 +45,21 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, onLoading }) {
                     name="firstname"
                     minLength="2"
                     maxLength="40"
-                    value={name}
+                    value={name || ""}
                     onChange={handleNameChange}
                     required
+
                 />
                 <span className="firstname-input-error popup__form-item-error"></span>
 
                 <input
+
                     id="info-input"
                     placeholder="Профессиональная деятельность"
                     type="text"
                     className="popup__form-item popup__form-item_type_job"
                     name="info"
-                    value={description}
+                    value={description || ""}
                     onChange={handleDescriptionChange}
                     minLength="2"
                     maxLength="200"
@@ -63,7 +67,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, onLoading }) {
                 />
                 <span className="info-input-error popup__form-item-error"></span>
 
-                <button type="submit" className="popup__form-button">{onLoading ? 'Ща все будет...' : 'Сохранить'}</button>
+                <button type="submit" className={"popup__form-button"} >{onLoading ? 'Ща все будет...' : 'Сохранить'}</button>
             </>} />
     );
 }

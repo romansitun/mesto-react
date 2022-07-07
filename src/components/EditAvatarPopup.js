@@ -14,10 +14,13 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, onLoading }) {
         });
     };
 
+
+
     return (
 
         <PopupWithForm name='confirm' title='Обновить автар' isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit} children={<>
             <input
+
                 type="url"
                 className="popup__form-item popup__form-item_type_link"
                 name="link"
@@ -27,6 +30,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, onLoading }) {
                 required
                 ref={avatarRef}
             />
+
             <span className="link-input-error popup__form-item-error"></span>
 
             <button

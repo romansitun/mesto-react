@@ -2,17 +2,22 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 
+
 function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
     const [name, setName] = React.useState('');
     const [link, setLink] = React.useState('');
 
 
+
+
     function handleNameChange(e) {
         setName(e.target.value);
+
     };
 
     function handleLinkChange(e) {
         setLink(e.target.value);
+
     };
 
     function handleSubmit(e) {
@@ -22,7 +27,9 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
             name: name,
             link: link
         });
+
     };
+
 
 
     return (
@@ -36,7 +43,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
                 placeholder="Название"
                 minLength="2"
                 maxLength="30"
-                value={name}
+                value={name || ""}
                 onChange={handleNameChange}
                 required
 
@@ -44,22 +51,23 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
             <span className="title-input-error popup__form-item-error"></span>
 
             <input
-                type="url"
+
+                type='url'
                 className="popup__form-item popup__form-item_type_link"
                 name="link"
                 id="avatar-link-input"
                 aria-label="Введите ссылку на изображение"
                 placeholder="Ссылка на картинку"
-                value={link}
+                value={link || ""}
                 onChange={handleLinkChange}
-                required
+                requiredF
 
             />
             <span className="avatar-link-input-error popup__form-item-error"></span>
 
             <button
                 type="submit"
-                className="popup__form-button popup__form-button_action_add"
+                className={"popup__form-button popup__form-button_action_add"}
             >
                 {onLoading ? 'Ван секонд...' : 'Создать'}
             </button>
