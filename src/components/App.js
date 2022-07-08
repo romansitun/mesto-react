@@ -9,6 +9,7 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import api from '../utils/Api';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import ConfirmDeletePopup from "./ConfirmDeletePopup";
+import PopupWithForm from "./PopupWithForm";
 
 
 function App() {
@@ -179,6 +180,7 @@ function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleConfirmDeleteClick}
         />
+        <PopupWithForm onLoading={isLoading} />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} onLoading={isLoading} />
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} onLoading={isLoading} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} onLoading={isLoading} />

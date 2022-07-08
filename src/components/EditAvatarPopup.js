@@ -18,29 +18,25 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, onLoading }) {
 
     return (
 
-        <PopupWithForm name='confirm' title='Обновить автар' isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit} children={<>
-            <input
+        <PopupWithForm name='confirm' title='Обновить автар' isOpen={isOpen}
+            buttonText={onLoading ? 'Ща все будет...' : 'Сохранить'}
+            onClose={onClose} onSubmit={handleSubmit} children={<>
+                <input
 
-                type="url"
-                className="popup__form-item popup__form-item_type_link"
-                name="link"
-                id="link-input"
-                aria-label="Введите ссылку на изображение"
-                placeholder="Ссылка на автар"
-                required
-                ref={avatarRef}
-            />
+                    type="url"
+                    className="popup__form-item popup__form-item_type_link"
+                    name="link"
+                    id="link-input"
+                    aria-label="Введите ссылку на изображение"
+                    placeholder="Ссылка на автар"
+                    required
+                    ref={avatarRef}
+                />
 
-            <span className="link-input-error popup__form-item-error"></span>
+                <span className="link-input-error popup__form-item-error"></span>
 
-            <button
-                type="submit"
-                className="popup__form-button popup__form-button_action_add"
 
-            >
-                {onLoading ? 'Ну-кааааа...' : 'Создать'}
-            </button>
-        </>} />
+            </>} />
 
     );
 }

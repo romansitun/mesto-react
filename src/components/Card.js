@@ -38,7 +38,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
     return (
         <article className="element">
-            <img src={card.link} className="element__image" onClick={handleClick} />
+            <img src={card.link} alt={card.name} className="element__image" onClick={handleClick} />
             <button
                 className={cardDeleteButtonClassName}
                 type="button"

@@ -31,10 +31,10 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, onLoading }) {
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser, isOpen]);
 
     return (
-        <PopupWithForm name='edit' title='Редактировать профиль' isOpen={isOpen} onSubmit={handleSubmit} onClose={onClose} children={
+        <PopupWithForm name='edit' title='Редактировать профиль' isOpen={isOpen} onSubmit={handleSubmit} onClose={onClose} buttonText={onLoading ? 'Ща все будет...' : 'Сохранить'} children={
             <>
                 <input
 
@@ -66,8 +66,6 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, onLoading }) {
                     required
                 />
                 <span className="info-input-error popup__form-item-error"></span>
-
-                <button type="submit" className={"popup__form-button"} >{onLoading ? 'Ща все будет...' : 'Сохранить'}</button>
             </>} />
     );
 }
