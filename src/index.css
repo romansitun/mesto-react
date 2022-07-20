@@ -68,3 +68,7 @@
 @import url(../src/blocks/register/__button/register__button.css);
 
 @import url(../src/blocks/register/__link/register__link.css);
+
+@import url(../src/blocks/header/__link/_button/header__link_button.css);
+@import url(../src/blocks/header/__email/header__email.css);
+@import url(../src/blocks/header/__menu/header__menu.css);

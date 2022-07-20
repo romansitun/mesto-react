@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -14,6 +14,9 @@ import PopupWithForm from "./PopupWithForm";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
+import * as auth from '../utils/auth';
+
+
 
 
 function App() {
@@ -34,6 +37,8 @@ function App() {
 
   const [cards, setCards] = React.useState([]);
 
+  const [profileEmail, setProfileEmail] = React.useState('');
+
 
 
   React.useEffect(() => {
@@ -50,6 +55,24 @@ function App() {
   function handleLogin() {
     setLoggedIn(true)
   }
+
+  const history = useHistory();
+
+  React.useEffect(() => {
+
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      // проверим токен
+      auth.getContent(jwt).then((res) => {
+        if (res) {
+          setProfileEmail(res.data.email)
+          // авторизуем пользователя
+          setLoggedIn(true)
+          history.push('/');
+        }
+      });
+    }
+  }, [history]);
 
 
 
@@ -178,12 +201,19 @@ function App() {
       })
   }
 
+  const handleSignOut = () => {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    history.push('/sign-in');
+  }
+
+
 
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
 
-        <Header />
+        <Header handleSignOut={handleSignOut} email={profileEmail} />
         <Switch>
           <ProtectedRoute
             exact path="/"

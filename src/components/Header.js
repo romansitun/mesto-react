@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Link } from 'react-router-dom';
 import Logo from '../images/logo.svg'
 
-function Header({ loggedIn }) {
+function Header({ email, handleSignOut }) {
     return (
         <header className="header">
             <img
@@ -15,6 +15,12 @@ function Header({ loggedIn }) {
             </Route>
             <Route path='/sign-up'>
                 <Link to='sign-in' className='header__link'>Войти</Link>
+            </Route>
+            <Route exact path='/'>
+                <div className='header__menu'>
+                    <p className='header__email'>{email}</p>
+                    <button className='header__link header__link_button' onClick={handleSignOut}>Выйти</button>
+                </div>
             </Route>
         </header>
 
