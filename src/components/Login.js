@@ -29,9 +29,9 @@ class Login extends React.Component {
             .then((data) => {
 
                 if (data.token) {
-
+                    this.props.handleLogin();
                     this.setState({ email: '', password: '' }, () => {
-                        this.props.handleLogin();
+
                         this.props.history.push('/');
                     })
                 }
