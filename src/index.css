@@ -49,5 +49,22 @@
 @import url(../src/blocks/popup/__form-button/_action_confirm/popup__form-button_action_confirm.css);
 @import url(../src/blocks/popup/__title/_place_confirm/popup__title_place_confirm.css);
 
-
 @import url(../src/blocks/element/__trash-button/_hidden/element__trash-button_hidden.css);
+
+@import url(../src/blocks/header/__link/header__link.css);
+@import url(../src/blocks/login/__title/login__title.css);
+@import url(../src/blocks/login/login.css);
+
+@import url(../src/blocks/login/login-input/login-input__email/login-input__email.css);
+@import url(../src/blocks/login/login-input/login-input__password/login-input__password.css);
+@import url(../src/blocks/login/__button/login__button.css);
+
+@import url(../src/blocks/register/register.css);
+@import url(../src/blocks/register/__title/register__title.css);
+
+@import url(../src/blocks/register/__email-input/register__email-input.css);
+@import url(../src/blocks/register/__password-input/register__password-input.css);
+
+@import url(../src/blocks/register/__button/register__button.css);
+
+@import url(../src/blocks/register/__link/register__link.css);
