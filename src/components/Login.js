@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import * as auth from '../utils/auth';
 
 
@@ -36,7 +36,10 @@ class Login extends React.Component {
                     })
                 }
             })
-            .catch(err => console.log(err)); // запускается, если пользователь не найден
+            .catch(err => {
+                console.log(err)
+                this.props.openInfoTooltip();
+            }); // запускается, если пользователь не найден
     }
     render() {
         return (

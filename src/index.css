@@ -72,3 +72,6 @@
 @import url(../src/blocks/header/__link/_button/header__link_button.css);
 @import url(../src/blocks/header/__email/header__email.css);
 @import url(../src/blocks/header/__menu/header__menu.css);
+
+@import url(../src/blocks/popup/__signup-icon/popup__signup-icon.css);
+@import url(../src/blocks/popup/__signup-title/popup__signup-title.css);

@@ -15,18 +15,24 @@ import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import * as auth from '../utils/auth';
-
+import InfoTooltip from "./InfoTooltip";
 
 
 
 function App() {
 
 
-
+  const [isRegistrationSuccessful, setIsRegistrationSuccessful] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isConfirmDeletePopupOpen, setIsConfirmDeletePopup] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
+
+  const openInfoTooltip = () => {
+    setIsInfoTooltipOpen(!isInfoTooltipOpen);
+  };
+
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(false);
@@ -145,14 +151,13 @@ function App() {
   }
 
 
-
-
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard({});
-    setIsConfirmDeletePopup(false)
+    setIsConfirmDeletePopup(false);
+    setIsInfoTooltipOpen(false);
   }
 
   function handleUpdateUser(data) {
@@ -207,6 +212,22 @@ function App() {
     history.push('/sign-in');
   }
 
+  function handleRegister({ email, password }) {
+    auth.register(email, password)
+      .then(data => {
+        if (data) {
+          setIsRegistrationSuccessful(true);
+          openInfoTooltip();
+          history.push('/sign-in');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setIsRegistrationSuccessful(false);
+        openInfoTooltip();
+      })
+  }
+
 
 
   return (
@@ -227,21 +248,11 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleConfirmDeleteClick} />
 
-          {/* <Main
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onEditAvatar={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            cards={cards}
-            onCardLike={handleCardLike}
-            onCardDelete={handleConfirmDeleteClick}
-          /> */}
-
           <Route path="/sign-in">
-            <Login handleLogin={handleLogin} />
+            <Login handleLogin={handleLogin} openInfoTooltip={openInfoTooltip} />
           </Route>
           <Route path="/sign-up">
-            <Register />
+            <Register onRegister={handleRegister} />
           </Route>
           <Route>
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
@@ -254,6 +265,7 @@ function App() {
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} onLoading={isLoading} />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <ConfirmDeletePopup isOpen={isConfirmDeletePopupOpen} onClose={closeAllPopups} onSubmit={handleCardDelete} card={removedCardId} onLoading={isLoading} />
+        <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} isSuccess={isRegistrationSuccessful} />
       </CurrentUserContext.Provider>
     </div >
   );
